@@ -1,0 +1,23 @@
+<ng-container *ngIf="this.isLogin">
+	<div class="container-fluid bg-menu mb-4">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light bg-menu">
+			  <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+			    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+			      <li class="nav-item">
+			        <a class="nav-link text-white" [routerLink]="[ '/products' ]" >Mis productos</a>
+			      </li>
+			      <li class="nav-item">
+			        <button class="nav-link btn btn-link text-white" (click)="this.onLogout()">
+			        	Cerrar sesión
+			   		 </button>
+			      </li>
+			    </ul>
+			  </div>
+			</nav>
+		</div>
+	</div>
+</ng-container>

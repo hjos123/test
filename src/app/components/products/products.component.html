@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-right">
+			<button [routerLink]="['/products/new']" class="btn btn-outline-danger bg-test">Agregar</button>
+		</div>
+		<div class="col-md-12">
+			<h4 class="titulo mb-1">Mis Productos</h4>
+		</div>
+		<div *ngFor="let product of products" class="col-md-3">
+			<div class="card mt-3 mb-3">
+				<div class="card-body product">
+					<img src="{{product.path}}" class="d-block ml-auto mr-auto img-fluid" alt="img-product">
+					<h5 class="mt-2 mb-1">{{product.name}}</h5>
+					<p>{{product.description}}</p>
+					<span class="d-block font-weight-bold text-right">$ {{product.price}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

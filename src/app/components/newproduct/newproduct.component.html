@@ -1,0 +1,148 @@
+<div class="container">
+	<div class="row pb-4">
+		<ng-container *ngIf="this.message">
+			<p class="col-sm-12 alert {{this.typeMessage}}">
+				{{this.message}}
+			</p>
+		</ng-container>
+		<div class="col-12">
+			<a [routerLink]="['/products']" class="btn btn-link link-test">Regresar a mis productos</a>
+		</div>
+		<div class="col-12">
+			<div class="card mt-3">
+				<div class="card-body">
+					<h2 class="text-center titutlo mt-2">Registra un producto para vender</h2>
+					<p class="text-center mb-1 texto">Escribe la información de tu producto, una fotografia y la fecha y hora en que</p>
+					<p class="text-center mb-1 texto">dejas de recibir pedidos para el producto.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row mt-5 pb-4">
+		<div class="col-12">
+			<div class="card pr-5 pl-5">
+				<div class="card-body">
+					<div class="img-test">
+						<img src="/assets/img/icons/circle-icon.png" class="img-fluid" alt="camara">
+					</div>
+					<h2 class="text-center titutlo mt-4">Información general del producto</h2>
+					<form #formRegister="ngForm">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name">El nombre de tu producto</label>
+									<input 
+									placeholder="ej. Monitor LG de 23''" 
+									required
+									type="text" 
+									[(ngModel)]="this.product.name"
+									class="form-control" 
+									name="name">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name">Categoria de tu producto</label>
+									<input 
+									placeholder="ej. Electronicos" 
+									type="text" 
+									[(ngModel)]="this.product.category"
+									class="form-control" 
+									name="category">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="name">Descripcion del producto</label>
+									<input 
+									placeholder="ej. Monitor Full HD LG de 23 pulgadas, Resolución 1920x1080 px" 
+									type="text" 
+									[(ngModel)]="this.product.description"
+									class="form-control"
+									required 
+									name="description">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name">¿Cuantos productos quieres vender?</label>
+									<input 
+									placeholder="ej. 1"
+									pattern="[0-9]*"
+									type="text" 
+									[(ngModel)]="this.product.quantity"
+									class="form-control" 
+									name="quantity">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name">¿Hasta cuando estara disponible?</label>
+									<div class="row">
+										<div class="col-6">
+											<input 
+												placeholder="Selecciona una fecha y hora" 
+												type="date" 
+												[(ngModel)]="this.product.date_available"
+												class="form-control" 
+												name="date_available">
+										</div>
+										<div class="col-6">
+											<input 
+												type="time" 
+												[(ngModel)]="this.time"
+												class="form-control" 
+												name="time">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name">¿Que precio tiene tu producto?</label>
+									<input 
+									placeholder="ej. 3000 (usa solo numeros)" 
+									pattern="^[0-9]{1,5}(\.[0-9]{0,2})?$" 
+									type="text" 
+									[(ngModel)]="this.product.price"
+									class="form-control" 
+									name="price">
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row mt-5">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="img-test">
+						<img src="/assets/img/icons/circle-camera.png" class="img-fluid" alt="camara">
+					</div>
+					<h2 class="text-center titutlo mt-4 mb-3">Fotografia de tu producto</h2>
+					<p class="text-center texto col-8 ml-auto mr-auto">Presione aqui para subir una foto, o arrastra las imagenes de tu producto, puedes reordenar las imagenes. La fotografia principal de tu producto sera la que este al lado izquerdo de este recuadro.</p>
+
+					<ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
+					    <ngx-dropzone-label>Arrastra tu imagen</ngx-dropzone-label>
+					    <ngx-dropzone-image-preview 
+					    ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+						  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+						</ngx-dropzone-image-preview>
+					</ngx-dropzone>
+
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="row mt-4 mb-4">
+		<div class="col-md-12 text-right">
+			<button 
+			(click)="this.onSubmit()"
+			[disabled]="!this.formRegister.form.valid"
+			class="btn btn-outline-danger btn-test">Publicar</button>
+		</div>
+	</div>
+</div>
